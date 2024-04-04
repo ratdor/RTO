@@ -1,0 +1,31 @@
+
+{% extends 'base.html'%}
+{% load static %}
+{% block link %} {% static 'css/login.css' %}{% endblock link%}
+{% block title %}RTO || Login{% endblock title%}
+
+{% block content %}
+<body>
+<img src="{% static 'images/backgroundVehicle.png' %}" style="background-size: cover;position:relative;width:100%;height:100vh">
+    <div id="loginForm" class="fw-normal" style="margin-right: 10%;position:absolute">
+
+        <form class="LoginForm" style="background-color: white; top: 50%;" method="post">
+            {% csrf_token %}
+            <h2 style="text-align: center;">RTV Certification Portal</h2>
+            <div id="errorMessage" class="error">
+                
+            </div>
+            <div class="auth-user-name">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+                
+            <div class="auth-password">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <Button type="submit" class="btn btn-success">Login</Button>
+        </form>
+    </div>
+</body>
+{% endblock content %}

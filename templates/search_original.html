@@ -1,0 +1,242 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block link %}{% static 'css/search.css' %}{% endblock link %}
+
+{% block title %}RTO || Search {% endblock title%}
+
+
+{% block content%}
+
+<body data-aos-easing="ease-in-out" data-aos-duration="1000" data-aos-delay="0">
+    <br>
+    <!-- ======= Header ======= -->
+    <nav class="navbar navbar-expand-lg bg-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-success fw-medium" href="#">Dealer Panel</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav gap-3 ms-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'search' %}" class="nav-link text-primary fw-medium"
+                            style="text-decoration: none;" data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse.show">Vehicles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary fw-medium" href="{% url 'home' %}"
+                            style="text-decoration: none;" data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse.show">Certificates</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary fw-medium" href="{% url 'logout' %}" data-bs-toggle="collapse"
+                            data-bs-target=".navbar-collapse.show">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        // JavaScript to handle toggling of navigation links on mobile
+        document.addEventListener("DOMContentLoaded", function () {
+            const navbarToggle = document.querySelector(".navbar-toggler");
+            const navbarNav = document.querySelector("#navbarNav");
+
+            navbarToggle.addEventListener("click", function () {
+                if (navbarNav.classList.contains("show")) {
+                    // If the navigation is already shown, hide it
+                    navbarNav.classList.remove("show");
+                } else {
+                    // If the navigation is hidden, show it
+                    navbarNav.classList.add("show");
+                }
+            });
+        });
+    </script>
+
+
+    <script>
+        /*scroll navbar*/
+        window.addEventListener("scroll", function () {
+            var nav = document.querySelector("#mainNav");
+            if (window.scrollY > 50) {
+                nav.classList.add("navbar-scrolled");
+            } else {
+                nav.classList.remove("navbar-scrolled");
+            }
+        });
+
+
+        /*navbar dropdown hover*/
+        function showDropdown(element) {
+            var dropdownMenu = element.querySelector('.dropdown-menu');
+            dropdownMenu.classList.add('show');
+        }
+
+        function hideDropdown(element) {
+            var dropdownMenu = element.querySelector('.dropdown-menu');
+            dropdownMenu.classList.remove('show');
+        }
+
+
+        /**** Arrow ****/
+        window.onload = function () {
+            var arrow = document.getElementById('arrow');
+
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 20) {
+                    arrow.style.display = "block";
+                } else {
+                    arrow.style.display = "none";
+                }
+            });
+
+            // Smooth scroll to top when arrow is clicked
+            arrow.onclick = function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            };
+        };
+    </script>
+    
+    <!-- End Header -->
+    <main id="main" class="mt-5">
+        <section class="inner-page">
+            <div class="container">
+                <hr>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <input type="text" name="type" value="New" hidden>
+                        <div class="col-md-4 col-sm-6 mb-2">
+                            <label for="from_date" class="form-label">From</label>
+                            <input type="date" name="from_date" id="from_date" class="form-control" value="">
+                        </div>
+                        <div class="col-md-4 col-sm-6 mb-2">
+                            <label for="to_date" class="form-label">To</label>
+                            <input type="date" name="to_date" id="to_date" class="form-control" value="">
+                        </div>
+                        <div class="col-md-4 col-sm-12 text-center text-sm-start" style="margin-top:30px;">
+                            <input type="submit" class="btn btn-success" value="Search">
+                        </div>
+                    </div>
+                </form>
+
+                <hr>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-2">Vehicle No:</div>
+                        <div class="col-lg-4 col-md-6"> <input name="vecregno" class="form-control" value=""></div>
+                        <div class="col-lg-6 col-md-6 mt-2 mt-md-0"> <input type="submit" class="btn btn-success"
+                                value="Search Vehicle">
+                        </div>
+                    </div>
+                </form>
+                <hr>
+                <div id="table_wrapper" class="dataTables_wrapper no-footer etxt-center">
+                    <table class="table dataTable no-footer" id="table" aria-describedby="table_info">
+                        <thead>
+                            <tr>
+                                <th class="sorting sorting_asc" tabindex="0" aria-controls="table" rowspan="1"
+                                    colspan="1" aria-sort="ascending" aria-label="
+                code
+            : activate to sort column descending" style="width: 38.9px;">
+                                    code
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1"
+                                    aria-label="
+                Vehicle No
+            : activate to sort column ascending" style="width: 81.175px;">
+                                    Vehicle No
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1"
+                                    aria-label="
+                Date
+            : activate to sort column ascending" style="width: 68.925px;">
+                                    Date
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1"
+                                    aria-label="Action: activate to sort column ascending" style="width: 51.575px;">
+                                    Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for data in queryset_by_date_vehicle %}
+                            <tr class="odd">
+                                <td class="sorting_1">
+                                    {{ data.id }}
+                                </td>
+                                <td>
+                                    <a href="{% url 'certificate' data.id %}">{{ data.vehicle_no }}</a>
+                                </td>
+                                <td>
+                                    {{ data.today_date|date:"d/m/Y" }}
+                                </td>
+                                <!-- Add more columns as needed for other fields -->
+                                <td>
+                                    <!-- Add content for additional fields if necessary -->
+                                    <a class="btn btn-success d-block d-md-inline-block mt-2 mt-md-0"
+                                        href="{% url 'certificate' data.id %}">View</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            <!-- {% for data in trans_no %}
+                            <tr class="odd">
+                                <td class="sorting_1">
+                                    {{ data.id }}
+                                </td>
+                                <td>
+                                    <a href="{% url 'certificate' data.id %}">{{ data.vehicle_no }}</a>
+                                </td>
+                                <td>
+                                    {{ data.today_date }}
+                                </td>
+                                <!-- Add more columns as needed for other fields --
+                                <td>
+                                    <!-- Add content for additional fields if necessary --
+                                    <a class="btn btn-success d-block d-md-inline-block mt-2 mt-md-0" href="{% url 'certificate' data.id %}">View</a>
+                                </td>
+                            </tr>
+                            {% endfor %} -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <script type="text/javascript">
+        $.noConflict();
+        $(document).ready(function () {
+            $('#table').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'print', 'pdf'
+                ]
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $.noConflict();
+        $(document).ready(function () {
+
+            $('#tableSearch').DataTable();
+        });
+
+    </script>
+
+
+
+
+</body>
+
+{% endblock content %}

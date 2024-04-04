@@ -1,0 +1,607 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block link %}{% static 'css/home.css' %}{% endblock link %}
+{% block title %}RTO || Home-Certificate {% endblock title%}
+
+{% comment %} {% block message %}
+    {% include 'message.html' %}
+{% endblock message %} {% endcomment %}
+
+{% block content%}
+
+<nav class="navbar navbar-expand-lg bg-light fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand text-success fw-medium" href="#">Dealer Panel</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav gap-3 ms-auto">
+                <li class="nav-item">
+                    <a href="{% url 'search' %}" class="nav-link text-primary fw-medium" style="text-decoration: none;"
+                        data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Vehicles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-primary fw-medium" href="{% url 'home' %}"
+                        style="text-decoration: none;" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse.show">Certificates</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-primary fw-medium" href="{% url 'logout' %}" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse.show">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // JavaScript to handle toggling of navigation links on mobile
+    document.addEventListener("DOMContentLoaded", function() {
+        const navbarToggle = document.querySelector(".navbar-toggler");
+        const navbarNav = document.querySelector("#navbarNav");
+
+        navbarToggle.addEventListener("click", function() {
+            if (navbarNav.classList.contains("show")) {
+                // If the navigation is already shown, hide it
+                navbarNav.classList.remove("show");
+            } else {
+                // If the navigation is hidden, show it
+                navbarNav.classList.add("show");
+            }
+        });
+    });
+</script>
+
+
+<script>
+    /*scroll navbar*/
+window.addEventListener("scroll", function () {
+    var nav = document.querySelector("#mainNav");
+    if (window.scrollY > 50) {
+        nav.classList.add("navbar-scrolled");
+    } else {
+        nav.classList.remove("navbar-scrolled");
+    }
+});
+
+
+/*navbar dropdown hover*/
+function showDropdown(element) {
+    var dropdownMenu = element.querySelector('.dropdown-menu');
+    dropdownMenu.classList.add('show');
+}
+
+function hideDropdown(element) {
+    var dropdownMenu = element.querySelector('.dropdown-menu');
+    dropdownMenu.classList.remove('show');
+}
+
+
+/**** Arrow ****/
+window.onload = function () {
+    var arrow = document.getElementById('arrow');
+
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 20) {
+            arrow.style.display = "block";
+        } else {
+            arrow.style.display = "none";
+        }
+    });
+
+    // Smooth scroll to top when arrow is clicked
+    arrow.onclick = function () {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+};
+</script>
+
+<br><br><br>
+
+<form action="#" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container mt-2">
+
+        <div class="row">
+            <div class="col-12 sectionHeaderVal">
+                <h2 class="fw-bold fs-3">Vehicle Details</h2>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 ">
+                <label class="control-label" for="Model">Vehicle No</label>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-10">
+                        {% comment %} <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> {% endcomment %}
+                        {{owner_form.vehicle_no}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">Year of Registration</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <!-- <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> -->
+                        {{owner_form.year_of_registration}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+
+            <div class="col-md-2 chassisno ">
+                <label class="control-label" for="Model">Chassis No</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <!-- <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> -->
+                        {{owner_form.chassis_no}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">Engine No</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <!-- <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> -->
+                        {{owner_form.engine_no}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 sectionHeaderVal">
+                <h2 class="fw-bold fs-3">Owner Details</h2>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 ">
+                <label class="control-label" for="Model">Owner Name</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <!-- <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> -->
+                        {{owner_form.name}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">Address</label>
+            </div>
+
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <!-- <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> -->
+                        {{owner_form.address}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-2 ">
+                <label class="control-label" for="Model">Phone</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <!-- <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> -->
+                        {{owner_form.phone}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">RTO</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        <!-- <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> -->
+                        {{owner_form.rto}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<!--         <div class="row mt-4">-->
+<!--            <div class="col-md-2 ">-->
+<!--                <label class="control-label" for="Model">The Regional Transport Office</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-4 ">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-10">-->
+<!--                        &lt;!&ndash; <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> &ndash;&gt;-->
+<!--                        {{owner_form.transport_office}}-->
+<!--                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"-->
+<!--                            data-valmsg-replace="true"></span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div> -->
+
+        <div class="row mt-4">
+            <div class="col-12 sectionHeaderVal">
+                <h2 class="fw-bold fs-3">Vehicle Tape Details</h2>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col">
+                <p>*All in Mtrs</p>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 ">
+                <label class="control-label" for="Model">Make</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        {{owner_form.make}}
+                    </div>
+                </div>  
+            </div>
+
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">Model</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        {% comment %} <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> {% endcomment %}
+                        {{owner_form.vehicle_model}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+<!--                     <div class="col-md-2 rt" id="searchbtn">-->
+<!--                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchModal"-->
+<!--                            style="height:40px">-->
+<!--                            <i class="material-icons">search</i>-->
+<!--                        </button>-->
+<!--                    </div> -->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">RED 20mm</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        {% comment %} <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> {% endcomment %}
+                        {{owner_form.red20mm}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">WHITE 20mm</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        {% comment %} <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> {% endcomment %}
+                        {{owner_form.white20mm}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">RED 50mm</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        {% comment %} <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> {% endcomment %}
+                        {{owner_form.red50mm}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">WHITE 50mm</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        {% comment %} <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> {% endcomment %}
+                        {{owner_form.white50mm}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">YELLOW 50mm</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        {% comment %} <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> {% endcomment %}
+                        {{owner_form.yellow50mm}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">RED 80mm</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        {% comment %} <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> {% endcomment %}
+                        {{owner_form.red80mm}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">WHITE 80mm</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        {% comment %} <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> {% endcomment %}
+                        {{owner_form.white80mm}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">YELLOW 80mm</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        {% comment %} <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> {% endcomment %}
+                        {{owner_form.yellow80mm}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">CLASS 3</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        {% comment %} <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> {% endcomment %}
+                        {{owner_form.class3}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">CLASS 4</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+                        {% comment %} <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> {% endcomment %}
+                        {{owner_form.class4}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">Certificate No:</label>
+            </div>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-10">
+<!--                        {% comment %} <input type="text" class="form-control" onChange="getProduct();" id="Model" name="Model"></select> {% endcomment %}-->
+                        {{owner_form.certificate_no}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Model"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="col-md-2 rt" id="searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 sectionHeaderVal">
+                <h2 class="fw-bold fs-3">Vehicle Images</h2>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-2 ">
+                <label class="control-label" for="Model">Front Image</label>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-10">
+                        <!-- Adding custom class to the file input -->
+                        <!-- <input type="file" class="form-control custom-file-input" id="FrontImg" name="FrontImg" /> -->
+                        {{owner_form.front_image}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="FrontImg"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">Back Image</label>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-10">
+                        <!-- Adding custom class to the file input -->
+                        <!-- <input type="file" class="form-control custom-file-input" id="FrontImg" name="FrontImg" /> -->
+                        {{owner_form.back_image}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="FrontImg"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-2 ">
+                <label class="control-label" for="Model">Left Image</label>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-10">
+                        <!-- Adding custom class to the file input -->
+                        <!-- <input type="file" class="form-control custom-file-input" id="FrontImg" name="FrontImg" /> -->
+                        {{owner_form.left_image}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="FrontImg"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 rt">
+                <label class="control-label" for="Model">Right Image</label>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-10">
+                        <!-- Adding custom class to the file input -->
+                        <!-- <input type="file" class="form-control custom-file-input" id="FrontImg" name="FrontImg" /> -->
+                        {{owner_form.right_image}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="FrontImg"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-2 ">
+                <label class="control-label" for="Model">RC Image</label>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-10">
+                        <!-- Adding custom class to the file input -->
+                        <!-- <input type="file" class="form-control custom-file-input" id="FrontImg" name="FrontImg" /> -->
+                        {{owner_form.rc_image}}
+                        <span class="text-danger field-validation-valid" data-valmsg-for="FrontImg"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="form-group text-center">
+                {{owner_form.today_date}}
+                <input type="submit" value="Create Certificate" class="btn btn-success" id="btnsubmit" />
+            </div>
+        </div>
+
+        <!-- <input name="CSRFToken" type="hidden"
+            value="CfDJ8D9-M9QkM9dLhkOx9ArhAiX2lcF0o4hxpvYypKlBPU2e4_CLYQRvkGMix1bfrByhyb-aibw0JTlxdoJ7GJ8hfWZ4lNEQVEVzw8Qfcdtnh8B2h4fY7bs8rWrL4qeGMmdDp1scP6TcIjA-b_MIjY7Ev7E3i0zsZali1FRVNh5PVtNs8VCKRmk9NmRnbtGxiytgvA" /> -->
+
+        <div class="mt-5">
+            <a class="btn btn-dark mt-3" href="/Certificates/Index?type=New">Back to List of Certificate</a>
+        </div>
+        <div id="arrow">↑</div>
+        <div></div>
+    </div>
+</form>
+
+<script type="text/javascript" src="{% static 'js/certificate.js' %}"></script>
+
+{% endblock content %}
+

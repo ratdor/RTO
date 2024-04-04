@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script>(function () { if (window.googletag) { var proxy = new Proxy(window.googletag, { get: function (a, b, c) { return "pubads" == b || "display" == b ? function () { return {} } : a[b] } }); window.googletag = proxy } else { var pak; Object.defineProperty(window, "googletag", { configurable: !1, get: function () { return pak && (pak.pubads = function () { return {} }), pak }, set: function (a) { return pak = a } }) } var tmp; Object.defineProperty(window, "websredir", { configurable: false, get: function () { return tmp; }, set: function (obj) { if (obj instanceof Array) throw ""; else tmp = obj; return tmp; } }); })();; (function () { document.currentScript.parentElement.removeChild(document.currentScript); })();</script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--    <script>(function () { if (window.googletag) { var proxy = new Proxy(window.googletag, { get: function (a, b, c) { return "pubads" == b || "display" == b ? function () { return {} } : a[b] } }); window.googletag = proxy } else { var pak; Object.defineProperty(window, "googletag", { configurable: !1, get: function () { return pak && (pak.pubads = function () { return {} }), pak }, set: function (a) { return pak = a } }) } var tmp; Object.defineProperty(window, "websredir", { configurable: false, get: function () { return tmp; }, set: function (obj) { if (obj instanceof Array) throw ""; else tmp = obj; return tmp; } }); })();; (function () { document.currentScript.parentElement.removeChild(document.currentScript); })();</script>-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% block link %} {% endblock link %}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!---------------------------------------font-------------------------------------->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link href="https://rtvsta.tn.gov.in/assets/img/favicon.png" rel="icon">
+    <link href="https://rtvsta.tn.gov.in/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <meta property="og:image" itemprop="image" content="~/assets/img/favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            font-weight: 200;
+            font-style: normal;
+        }
+
+        /****** navbar *******/
+        .container {
+            margin-top: 1rem;
+        }
+
+        .navbar-scrolled {
+            background-color: white !important;
+            transition: background-color 0.3s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /***** Vehicle Images *****/
+        .custom-file-input {
+            color: white;
+            background-color: #343a40;
+            border-color: #343a40;
+        }
+
+        .custom-file-input::placeholder {
+            color: #adb5bd;
+        }
+
+        /**** Vehicle Details *****/
+        .sectionHeaderVal {
+            padding: 6px 10px;
+            margin-top: 20px;
+            background-image: linear-gradient(to top, #429ce9 0, #1375b0 100%);
+            color: #fff;
+            float: left;
+            line-height: 0;
+            font-weight: 600;
+            clip-path: polygon(0 -1%, 100% -1%, calc(100% - 35px) 100%, 0 100%);
+        }
+
+        .rt {
+            text-align: start;
+        }
+
+        /**** media screen ***/
+        @media (max-width:767px) {
+            .rt {
+                margin-top: 20px
+            }
+        }
+
+        /*** arrow ***/
+        #arrow {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .login_message {
+            height: 40px;
+            width: 17%;
+            background-color: #04aa6d;
+            color: #ffff;
+            position: absolute;
+            top: 8%;
+            left: 40%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-left: 15px;
+            z-index: 999;
+        }
+
+        .close-button {
+            font-size: 20px;
+            position: relative;
+            left: 60px;
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            z-index: 999;
+        }
+        @media print {
+        .no-print {
+            display: none;
+        }
+    }
+
+    </style>
+
+
+
+
+    {% comment %} <link href="./search_files/googlefonts.css" rel="stylesheet"> {% endcomment %}
+
+
+    {% comment %} <link href="./search_files/aos.css" rel="stylesheet">
+    <link href="./search_files/bootstrap.min.css" rel="stylesheet">
+    <link href="./search_files/bootstrap-icons.css" rel="stylesheet">
+    <link href="./search_files/glightbox.min.css" rel="stylesheet">
+    <link href="./search_files/remixicon.css" rel="stylesheet">
+    <link href="./search_files/swiper-bundle.min.css" rel="stylesheet">
+    <link href="./search_files/all.min.css" rel="stylesheet"> {% endcomment %}
+
+    <!-- #region datatables files -->
+    <!-- #endregion -->
+<!--    <script src="./search_files/jquery.min.js.download"></script>-->
+    {% comment %} <link href="./search_files/bootstrap.css" rel="stylesheet"> {% endcomment %}
+    <!-- ✅ Load CSS file for DataTables  -->
+    {% comment %} <link rel="stylesheet" href="./search_files/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="./search_files/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="./search_files/select2.min.css"> {% endcomment %}
+    <!-- ✅ load jQuery ✅ -->
+
+    <!-- ✅ load DataTables ✅ -->
+
+<!--    <script type="text/javascript" src="./search_files/jquery.dataTables.js.download"></script>-->
+<!--    <script type="text/javascript" src="./search_files/jquery.dataTables.min.js.download"></script>-->
+<!--    <script type="text/javascript" src="./search_files/dataTables.buttons.min.js.download"></script>-->
+<!--    <script type="text/javascript" src="./search_files/buttons.html5.min.js.download"></script>-->
+<!--    <script type="text/javascript" src="./search_files/buttons.print.min.js.download"></script>-->
+
+<!--    <script src="./search_files/jquery.js.download"></script>-->
+<!--    <script src="./search_files/jquery.min(1).js.download"></script>-->
+<!--    <script src="./search_files/jquery.min.map"></script>-->
+
+<!--    <script src="./search_files/select2.min.js.download"></script>-->
+<!--    <script src="./search_files/jszip.min.js.download"></script>-->
+<!--    <script src="./search_files/pdfmake.min.js.download"></script>-->
+<!--    <script src="./search_files/vfs_fonts.js.download"></script>-->
+
+
+
+
+    <meta property="og:image" itemprop="image" content="~/assets/img/favicon.png">
+
+
+    <!-- Google Fonts -->
+    {% comment %} <link href="./ViewCertificate - Vahan_files/googlefonts.css" rel="stylesheet"> {% endcomment %}
+    <!-- Vendor CSS Files -->
+    {% comment %} <link href="./ViewCertificate - Vahan_files/aos.css" rel="stylesheet">
+    <link href="./ViewCertificate - Vahan_files/bootstrap.min.css" rel="stylesheet">
+    <link href="./ViewCertificate - Vahan_files/bootstrap-icons.css" rel="stylesheet">
+    <link href="./ViewCertificate - Vahan_files/glightbox.min.css" rel="stylesheet">
+    <link href="./ViewCertificate - Vahan_files/remixicon.css" rel="stylesheet">
+    <link href="./ViewCertificate - Vahan_files/swiper-bundle.min.css" rel="stylesheet">
+    <link href="./ViewCertificate - Vahan_files/all.min.css" rel="stylesheet"> {% endcomment %}
+
+    <!-- Template Main CSS File -->
+    {% comment %} <link href="./ViewCertificate - Vahan_files/style.css" rel="stylesheet"> {% endcomment %}
+    <!-- #region datatables files -->
+    <!-- #endregion -->
+<!--    <script src="./ViewCertificate - Vahan_files/jquery.min.js.download"></script>-->
+    {% comment %} <link href="./ViewCertificate - Vahan_files/bootstrap.css" rel="stylesheet"> {% endcomment %}
+    <!-- ✅ Load CSS file for DataTables  -->
+    {% comment %} <link rel="stylesheet" href="./ViewCertificate - Vahan_files/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="./ViewCertificate - Vahan_files/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="./ViewCertificate - Vahan_files/select2.min.css"> {% endcomment %}
+    <!-- ✅ load jQuery ✅ -->
+
+    <!-- ✅ load DataTables ✅ -->
+
+
+</head>
+
+<body>
+
+    {% block message %}{% endblock message %}
+
+    {% block content %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    {% endblock content %}
+
+</body>
+
+</html>

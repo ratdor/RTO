@@ -1,0 +1,14 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}"> 
+{% for msg in messages %}
+<div class="login_message">
+  {{msg}}
+  <button
+    class="close-button"
+    onclick="this.parentElement.style.display='none';"
+  >
+    x
+  </button>
+</div>
+{% endfor %}

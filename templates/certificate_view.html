@@ -1,0 +1,363 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block link %}{% static 'css/certificate_view.css' %}{% endblock link %}
+{% block title %}RTO || MIS CERTIFICATE {% endblock title%}
+{% block content%}
+
+    <div class="container-fluid text-center mt-5">
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="table-responsive text-center">
+                    <div class="w-100 d-flex justify-content-evenly">
+                        <div style="text-align: center;">
+                            <h4 class="lead fs-1">VEHICLE CONSPICUITY ONLINE MIS CERTIFICATE</h4>
+                            <h5 class="lead fs-4">COMPLIANCE TO AUTOMOTIVE INDUSTRY STANDARD - 089&amp; 090</h5>
+                            <h2 class="lead fs-4">(Generated online in rtvsta.tn.gov.in)
+                            </h2>
+                        </div>
+                        <div>
+                            <img src="{{qr_image_url}}" alt="QR Code">
+                        </div>
+                    </div>
+                    <table class="mx-auto">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                    <table border="1" style="width: 100%;border: transparent">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <table border="1"
+                                                                        style="width: 100%;border: transparent">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="text-align: start;font-size: 19px;font-weight:bold">
+                                                                                    To:</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="font-size: 19px;text-align: start;font-weight:bold">
+                                                                                     The Regional Transport Office<span
+                                                                                        style="font-weight:bold;font-size: 19px;text-transform: uppercase;"></span>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="text-align: start;font-size: 23px;">
+                                                                                    <b>{{certificate.rto}}</b>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                                <td>
+                                                                </td>
+                                                                <td>
+                                                                    <table border="1" id="pholo"
+                                                                        style="width: 100%;border: transparent">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="text-align: center; height: 40px; font-size:19PX;font-weight: bold;">
+                                                                                    <strong>RTV - CERTIFICATE</strong>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                                <td>
+                                                                    <table border="1"
+                                                                        style="width: 100%;border: transparent">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="font-size: 19px;text-align: end;font-weight:bold">
+                                                                                    Certificate No: <span
+                                                                                        style="font-weight:bold;font-size: 19px;text-transform: uppercase;">{{certificate.certificate_no}}</span>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="font-size: 19px;text-align: end;font-weight:bold">
+                                                                                    Fitment Date: <span
+                                                                                        style="font-weight:bold;font-size: 19px;text-transform: uppercase;">{{certificate.today_date|date:"d/m/Y"}}</span>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+
+
+                                                    <table style="text-align: left;padding:15px">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th class="col-md-4" style="border: 1px solid black;height: 40px; padding-left: 4px;">
+                                                                    Vehicle Details</th>
+                                                                <th class="col-md-3" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Vehicle Make &amp; Model</th>
+                                                                <th class="col-md-5" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Manufacturer &amp; DistributorDetails</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="col-md-4" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Registration No :
+                                                                    <strong>{{certificate.vehicle_no}}</strong>
+                                                                </td>
+                                                                <td class="col-md-3" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Registration Year:
+                                                                    {{certificate.year_of_registration}}
+                                                                </td>
+                                                                <td class="col-md-5" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Trade Name : <strong>3M </strong>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="col-md-4" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Chassis No :
+                                                                    {{certificate.chassis_no}}</td>
+                                                                <td class="col-md-3" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Engine No :
+                                                                    {{certificate.engine_no}}</td>
+                                                                <td class="col-md-5"
+                                                                    style="border: 1px solid black;font-size:20px; padding-left: 4px;">
+                                                                    Manufacturer
+                                                                    Details: 3M INDIA LIMITED </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="col-4" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Vehicle Make: {{certificate.make}}
+                                                                </td>
+                                                                <td class="col-3" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Vehicle Model :
+                                                                    {{certificate.vehicle_model}}</td>
+                                                                <td class="col-5"
+                                                                    style="border: 1px solid black;font-size:19px; padding-left: 4px;">
+                                                                    Distributor
+                                                                    Details: SAI SUKRAN VENTURES PVT LTD </td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+
+
+
+                                                    <table style="text-align: left;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="col-6" style="border: 1px solid black;height: 40px; padding-left: 4px";>
+                                                                    Vehicle Owner Details </th>
+                                                                <th class="col-6" style="border: 1px solid black; padding-left: 4px;">RC
+                                                                    IMAGE</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">
+                                                                    Company Name/Owner Name : {{certificate.name}}
+                                                                </td>
+                                                                <td class="tablee p-1" style="border: 1px solid black;"
+                                                                    rowspan="8">
+                                                                    <img src="{{ certificate.rc_image.url }}" height="30"
+                                                                        width="100">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="font-size:20px;border: 1px solid black; padding-left: 4px;">
+                                                                    Owner Address / Register Address :
+                                                                    {{certificate.address}}
+                                                                    <br>
+                                                                    Contact Number : {{certificate.phone}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th style="border: 1px solid black; padding-left: 4px;" class="col-md-3">
+                                                                    Conspicuity Tapes 20MM & 50MM
+                                                                    Fitment Details</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border: 1px solid black; padding-left: 4px;"> 20MM RED :
+                                                                    {{certificate.red20mm}} Mtrs | 20MM
+                                                                    WHITE : {{certificate.white20mm}} Mtrs
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">50MM Red :
+                                                                    {{certificate.red50mm}} Mtrs | 50MM White
+                                                                    : {{certificate.white50mm}} Mtrs | 50MM Yellow :
+                                                                    {{certificate.yellow50mm}} Mtrs
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th style="border: 1px solid black; padding-left: 4px;" class="col-md-3">
+                                                                    Rear Marking Plates Details</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">
+                                                                     
+                                                                    {% comment %} <i id="class3_icon"   style="color: #FFD43B;display: none;"></i> {% endcomment %}
+
+                                                                    {% if certificate.class3 == 1 or certificate.class3 == '1' %}
+                                                                    Class 3 : Red Retro Reflective and Yellow Retro
+                                                                    Reflective-Alternative Strips
+                                                                        <i class="fa-regular fa-square-check" style="font-size: 30px;"></i>
+                                                                    {% else %}
+                                                                    Class 3 : {{certificate.class3}} Red Retro Reflective and Yellow Retro
+                                                                        Reflective-Alternative Strips
+                                                                    {% endif %}
+                                                                    <!-- Assuming this is somewhere within your form -->
+<!--                                                                    <input type="text" class="fa-sharp fa-solid fa-circle-check" oninput="displayIcon();" id="Model" name="Model">-->
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">Class 4 :
+                                                                    {{certificate.class4}}
+                                                                    Red Retro Reflective border and Yellow Retro
+                                                                    Reflective Centre
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+
+
+                                                    <table style="text-align: left;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th style="border: 1px solid black;height: 40px; padding-left: 4px;">Approval Details
+                                                                </th>
+                                                                <th style="border: 1px solid black; padding-left: 4px;" colspan="2"
+                                                                    align="right" class="text-center">
+                                                                    Certified By ARAI / ICAT</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">TAC:A94495</td>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">COP Number:
+                                                                    SHL/16/2020-2021/3000013406/COP/2621
+                                                                </td>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">Test Report Number:
+                                                                    SHL/16/2013-2014/9149/2783</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+
+
+                                                    <table class="table-res" style="text-align: left;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th colspan="4" style="border: 1px solid black; padding-left: 4px;">Fitment
+                                                                    Images</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">Front</td>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">Rear</td>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">Side-1</td>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">Side-2</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td
+                                                                    style="width: 25%;border: 1px solid black;text-align: center;">
+                                                                    <img src="{{certificate.front_image.url}}" class="p-1" height="200"
+                                                                        width="400">
+                                                                </td>
+                                                                <td
+                                                                    style="width: 25%;border: 1px solid black;text-align: center;">
+                                                                    <img src="{{certificate.back_image.url}}" class="p-1" height="200"
+                                                                        width="400">
+                                                                </td>
+                                                                <td
+                                                                    style="width: 25%;border: 1px solid black;text-align: center;">
+                                                                    <img src="{{certificate.left_image.url}}" class="p-1" height="200"
+                                                                        width="400">
+                                                                </td>
+                                                                <td
+                                                                    style="width: 25%;border: 1px solid black;text-align: center;">
+                                                                    <img src="{{certificate.right_image.url}}" class="p-1" height="200"
+                                                                        width="400">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="4" style="border: 1px solid black; padding-left: 4px;">
+                                                                    <p>We hereby certify that supplied/installed ICAT /
+                                                                        ARAI Approved Retro Reflective Tapes as per CMRV
+                                                                        rule 104 specified under CMVR GSR 784 (E)</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3" style="border: 1px solid black; padding-left: 4px;">For
+                                                                    VETRI STICKERS (3MLKSVS82Z)
+                                                                    <br><br><br><b>Authorized Dealer Seal & Signature
+                                                                    </b>
+                                                                </td>
+                                                                <td class="text-center"
+                                                                    style="border: 1px solid black; padding-left: 4px;">
+                                                                    <br><br><br><b>Customer
+                                                                        Signature</b>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                    <h6 class="text-center lead"><b style="font-size:13px; padding-left: 4px;">[Note:
+                                                            This certificate was downloaded from
+                                                            WWW.RTVSTA.TN.GOV.IN]</b></h6>
+
+
+                                                    <div class="col-lg-1"></div>
+
+
+                                                    <div class="text-center">
+                                                        <button class="btn btn-success no-print" onclick="window.print()" value="print">
+                                                            Print Certificate
+                                                        </button>
+                                                        <a class="btn btn-dark no-print text-center" href="{% url 'home' %}">
+                                                            Back
+                                                        </a>
+                                                    </div>
+
+
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+<br>
+<br>
+<script type="text/javascript" src="{% static 'js/certificate.js' %}"></script>
+
+{% endblock content %}

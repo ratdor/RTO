@@ -1,0 +1,5 @@
+# python -m pip install Pillow
+django >=4.0.0,< 5.0.0
+django-jazzmin
+qrcode
+pillow
