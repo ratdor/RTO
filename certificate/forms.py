@@ -68,14 +68,14 @@ class OwnerForm(forms.ModelForm):
     ]
 
     make = forms.ChoiceField(choices=MAKE_CHOICES, widget=forms.Select(attrs={'class': 'form-control', 'onChange': 'getModel();', 'id': 'Make', 'name': 'Make'}))
-
+    dealer_name = forms.CharField(widget=forms.TextInput(attrs={'class':'dealer_name','value':'Saru Enterprises'}))
     class Meta:
         model = Owner
         fields = ['name', 'address', 'phone', 'rto','today_date',
                   'make', 'new_vehicle_registration', 'vehicle_no', 'year_of_registration', 
                   'chassis_no', 'engine_no','vehicle_model','red20mm','red50mm','yellow50mm',
                   'white80mm','class3','white20mm','white50mm','red80mm','yellow80mm','class4','certificate_no',
-                  'front_image', 'back_image', 'left_image', 'right_image', 'rc_image']
+                  'front_image', 'back_image', 'left_image', 'right_image', 'rc_image','dealer_name']
         
         widgets={
             'today_date':forms.DateInput(attrs={'type':'hidden'}),

@@ -1,196 +1,149 @@
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 .text-align-left {
-            text-align: left;
-        }
+    text-align: left;
+}
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            /* border: 1px solid black; */
-        }
-
-
-        .tablee img {
-            width: 100%;
-            height: 350px;
-        }
-
-        /******************* table 1 *******************/
-
-        @media print {
-            body {
-                width: 21cm;
-                height: 29.7cm;
-                margin: 0;
-                /* margin: 30mm 45mm 30mm 45mm;  */
-                /* Change to landscape orientation if needed */
-            }
-
-            .container {
-                width: 100%;
-                max-width: 100%;
-                margin: 0 auto;
-                /* padding: 10px; */
-                box-sizing: border-box;
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .container {
-                padding: 5px;
-            }
-        }
-
-        .container {
-            text-align: center;
-            max-width: 100%;
-        }
-
-        .table-responsive {
-            display: inline-block;
-            overflow-x: auto;
-        }
-
-        @media screen and (max-width: 767px) {
-            .table-responsive {
-                zoom: 0.8;
-
-                transform: scale(0.8);
-                transform-origin: top;
-            }
-        }
-
-        @media screen and (max-width: 433px) {
-            .table-responsive {
-                zoom: 0.5;
-                /* Older browsers */
-                transform: scale(0.5);
-                transform-origin: top;
-            }
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        /* Add your table styles here */
-        td,
-        th {
-
-            text-align: left;
-        }
-
-        /***************** table 2 *********************/
-        /* Base styles for the table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-
-        tr,
-        th {
-            font-size: 20px;
-        }
-        .no-print{
-            width:150px;
-            height:50px
-        }
+table {
+    border-collapse: collapse;
+    width: 100%;
+    /* border: 1px solid black; */
+}
 
 
+.tablee img {
+    width: 100%;
+    height: 350px;
+}
 
-        /* Responsive scaling for screens 433px and below */
-        @media screen and (min-width: 767px) {
-            .table-responsive {
-                zoom: 0.8;
+/******************* table 1 *******************/
 
-                transform: scale(0.8);
-                transform-origin: top;
-            }
-        }
+.container {
+    text-align: center;
+    max-width: 100%;
+}
 
-        @media (max-width: 433px) {
-            .table-responsive {
+.table-responsive {
+    display: inline-block;
+    overflow-x: auto;
+}
 
-                transform: scale(0.6);
-                transform-origin: top center;
-                overflow-x: auto;
-                width: 100%;
-                margin-top: -5%;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
 
-            }
+td,
+th {
 
-            .table-container {
-                transform: scale(0.6);
-                transform-origin: top;
-                overflow-x: auto;
-                width: 100%;
-            }
-        }
+    text-align: left;
+}
 
+tr,
+th {
+    font-size: 20px;
+}
 
-        @media print {
-            .table-container {
-                transform: scale(1);
-                page-break-inside: avoid;
-                break-inside: avoid;
-                -webkit-region-break-inside: avoid;
-            }
+.no-print {
+    width: 150px;
+    height: 50px;
+}
 
-            table {
-                width: 100% !important;
-
-            }
-
-
-            body,
-            html {
-                width: 100%;
-            }
-        }
+.table-responsive {
+    zoom: 0.95;
+    transform: scale(0.8);
+    transform-origin: top;
+}
 
 
-        .table-responsive {
-            text-align: left;
-        }
+/* Responsive scaling for screens 433px and below */
+@media screen and (min-width: 767px) {
+    .table-responsive {
+        zoom: 0.8;
+        transform: scale(0.8);
+        transform-origin: top;
+    }
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
 
-        }
+/* Print-specific styles */
+@media print {
+    body {
+        width: 21cm;
+        height: 29.7cm;
+        margin: 0;
+        /* margin: 30mm 45mm 30mm 45mm;  */
+        /* Change to landscape orientation if needed */
+        /* overflow-y: hidden;
+        overflow-x: hidden; */
 
-        td,
-        th {
-            text-align: left;
+    }
 
-        }
+    @page {
+        size: auto;
+        /* size: A2 portrait;    */
+        /* Set page size */
+        page-break-before:auto;
+        margin: 1cm 0cm 0.85cm 0cm;
+        /* Ensure page break before each odd page */
+    }
 
-        /* Print-specific styles */
-        @media print {
-            .table-responsive {
-                transform: scale(0.8);
+    .container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        /* padding: 10px; */
+        box-sizing: border-box;
+    }
 
-                transform-origin: top left;
+    .table-responsive {
+        transform: scale(0.8);
+        transform-origin: top left;
+        width: 125%;
+        text-align: left;
+    }
 
-                width: 125%;
+    img {
 
-            }
+        max-width: 99% !important;
+    }
 
-            img {
+    .no-print {
+        display: none;
+    }
 
-                max-width: 99% !important;
+    .table-container {
+        transform: scale(1);
+        page-break-inside: avoid;
+        break-inside: avoid;
+        -webkit-region-break-inside: avoid;
+    }
 
-            }
+    table {
+        width: 100% !important;
+    }
 
-            tr,
-            th {
-                font-size: 20px;
-            }
-            .no-print {
-                display: none;
-            }
-        }
 
+    body,
+    html {
+        width: 100%;
+    }
+
+    tr,
+    th,
+    td {
+        font-size: 20px;
+    }
+
+    td,
+    th {
+        text-align: left;
+
+    }
+}

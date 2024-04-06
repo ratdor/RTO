@@ -129,8 +129,8 @@ def certificate_view(request, id):
         qr = qrcode.QRCode(
             version=1,
             error_correction=qrcode.constants.ERROR_CORRECT_L,
-            box_size=5,
-            border=4,
+            box_size=6,
+            border=5,
         )
         qr.add_data(user_data_url)
         qr.make(fit=True)

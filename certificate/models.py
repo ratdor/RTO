@@ -25,6 +25,7 @@ class Owner(models.Model):
     yellow80mm = models.DecimalField(max_digits=20,decimal_places=2,default=0)
     class4 = models.IntegerField(default=0)
     certificate_no = models.CharField(max_length=30,null=True)
+    dealer_name = models.CharField(max_length=50,null=True)
     make = models.CharField(max_length=100,null=True) 
     front_image = models.ImageField(upload_to='vehicle_images/',null=True)
     back_image = models.ImageField(upload_to='vehicle_images/',null=True)

@@ -1,403 +1,366 @@
 {% extends 'base.html'%}
 {% load static %}
-
-{% comment %} {% block link %}{% static 'css/certificate_view.css' %}{% endblock link %} {% endcomment %}
-
+{% block link %}{% static 'css/certificate_view.css' %}{% endblock link %}
 {% block title %}RTO || MIS CERTIFICATE {% endblock title%}
-
-{% block message %}
-    {% include 'message.html' %}
-{% endblock message %}
-
 {% block content%}
 
-<body data-aos-easing="ease-in-out" data-aos-duration="1000" data-aos-delay="0">
-    <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top">
-        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-            <a class="logo d-flex align-items-center">
-
-                <span></span>
-            </a>
-
-        </div>
-    </header>
-    <!-- End Header -->
-    <main id="main">
-        <section class="inner-page">
-            <div class="container">
-                <p>
-                </p>
-                <div id="cer">
-                    <div class="row">
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-10">
-
-                            {% comment %} <link rel="stylesheet" href="./ViewCertificate - Vahan_files/site.css"> {% endcomment %}
-
-
-                            <table style="width:100%">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <table>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="col-1" align="left">
-                                                        </td>
-                                                        <td class="col-10 text-center">
-                                                            <h4 style="font-size:26px !important;">VEHICLE CONSPICUITY
-                                                                ONLINE MIS CERTIFICATE</h4>
-                                                            <h5 style="font-size:16px !important;">COMPLIANCE TO
-                                                                AUTOMOTIVE INDUSTRY STANDARD - 089 &amp; 090</h5>
-                                                            <h2 style="font-size:20px !important;"> <b>(Generated online
-                                                                    in rtvsta.tn.gov.in)</b></h2>
-
-                                                        </td>
-                                                        {% comment %} <td class="col-1" align="right">
-
-                                                            <img src="{{qr_image_url}}" alt="QR Code">
-
-                                                        </td> {% endcomment %}
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <table border="1" style="width: 100%;border: transparent">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <table border="1" style="width: 100%;border: transparent">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td
-                                                                            style="text-align: start;font-size: 14px;font-weight:bold">
-                                                                            To:</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td style="text-align: start;font-size: 14px;">
-                                                                            <b>The Regional Transport Office</b>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td style="text-align: start;font-size: 14px;">
-                                                                            <b>{{user_data.rto}}
-                                                                            </b>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                        <td>
-                                                        </td>
-                                                        <td>
-                                                            <table border="1" id="pholo"
-                                                                style="width: 100%;border: transparent">
-                                                                <tbody>
-                                                                    <tr id="nested pholo">
-                                                                        <td
-                                                                            style="text-align: center; height: 40px; font-size:larger;">
-                                                                            <strong>
-                                                                                RTV - CERTIFICATE </strong>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                        <td>
-                                                            <table border="1" style="width: 100%;border: transparent">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td
-                                                                            style="font-size: 14px;text-align: end;font-weight:bold">
-                                                                            Certificate No: <span
-                                                                                style="font-weight:bold;font-size: 12px;text-transform: uppercase;">{{user_data.certificate_no}}</span>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td
-                                                                            style="font-size: 14px;text-align: end;font-weight:bold">
-                                                                            Fitment Date: <span
-                                                                                style="font-weight:bold;font-size: 12px;text-transform: uppercase;">{{user_data.today_date}}</span>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
-
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <th class="col-md-4">Vehicle Details</th>
-                                                        <th class="col-md-3">Vehicle Make &amp; Model</th>
-                                                        <th class="col-md-5">Manufacturer &amp; Distributor Details</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="col-md-4">Registration No :
-                                                            <strong>{{user_data.new_vehicle_registration}}</strong>
-                                                        </td>
-                                                        <td class="col-md-3">Registration Year: <strong>{{user_data.year_of_registration}}</strong> </td>
-                                                        <td class="col-md-5">
-                                                            Trade Name : <strong>3M </strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="col-md-4">Chassis No : {{user_data.chassis_no}}</td>
-                                                        <td class="col-md-3">Engine No : {{user_data.engine_no}}</td>
-                                                        <td class="col-md-5" style="font-size:13px">
-                                                            Manufacturer Details:
-                                                            3M INDIA LIMITED </td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="col-4">Vehicle Make: {{user_data.make}}</td>
-                                                        <td class="col-3">Vehicle Model : {{user_data.vehicle_model}}
-                                                        </td>
-                                                        <td class="col-5" style="font-size:13px">
-                                                            Distributor Details:
-                                                            SAI SUKRAN VENTURES PVT LTD </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <th class="col-6">Vehicle Owner Details</th>
-                                                        <th class="col-6" colspan="3">RC IMAGE</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="col-5">
-                                                            Company Name/Owner Name : {{user_data.name}}
-                                                        </td>
-                                                        <td style="width: 1.0in;" rowspan="8">
-                                                            <img src="{{ user_data.rc_image.url }}" height="100" width="100" style="width: 4.5in; height: 2.5in;">
-                                                        </td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-size:13px">
-                                                            Owner Address / Register Address :
-                                                            {{user_data.address}}
-                                                            <br>
-                                                            Contact Number : {{user_data.phone}}
-
-                                                        </td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="col-md-3">Conspicuity Tapes 20MM &amp; 50MM Fitment
-                                                            Details</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td> 20MM RED : {{user_data.red20mm}} Mtrs
-                                                            | 20MM WHITE : {{user_data.white20mm}} Mtrs</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>50MM Red : {{user_data.red50mm}} Mtrs |
-                                                            50MM White : {{user_data.white50mm}} Mtrs |
-                                                            50MM Yellow : {{user_data.yellow50mm}} Mtrs</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="col-md-3">Rear Marking Plates Details</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Class 3 : {{user_data.class3}}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="col-md-6" colspan="4">
-                                                            Class 4 : {{user_data.class4}}
-
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <th>Approval Details</th>
-                                                        <th colspan="2" align="right" class="text-center">Certified By
-                                                            ARAI / ICAT</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            TAC:A94495 </td>
-                                                        <td>
-                                                            COP Number :
-                                                            SHL/16/2020-2021/3000013406/COP/2621
-                                                        </td>
-                                                        <td>
-                                                            Test Report Number :SHL/16/2013-2014/9149/2783 </td>
-
-                                                    </tr>
-
-                                                </tbody>
-                                            </table>
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <th colspan="4">Fitment Images</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Front</td>
-                                                        <td>Rear</td>
-                                                        <td>Side-1</td>
-                                                        <td>Side-2</td>
-                                                    </tr>
-                                                    <tr>
-
-                                                        <td style="width: 1.0in;"><img
-                                                                src="{{user_data.front_image.url}}"
-                                                                height="100" width="100"
-                                                                style="width: 2.3in;height: 1.8in;"></td>
-                                                        <td style="width: 1.0in;"><img
-                                                                src="{{user_data.back_image.url}}"
-                                                                height="100" width="100"
-                                                                style="width: 2.3in;height: 1.8in;"></td>
-                                                        <td style="width: 1.0in;"><img
-                                                                src="{{user_data.left_image.url}}"
-                                                                height="100" width="100"
-                                                                style="width: 2.3in;height: 1.8in;"></td>
-                                                        <td style="width: 1.0in;"><img
-                                                                src="{{user_data.right_image.url}}"
-                                                                height="100" width="100"
-                                                                style="width: 2.3in;height: 1.8in;"></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="4"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="4">
-                                                            <p>We hereby certify that supplied/installed ICAT / ARAI
-                                                                Approved Retro Reflective Tapes as per CMRV rule 104
-                                                                specified under CMVR GSR 784 (E)</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="3">For VETRI STICKERS (3MLKSVS82Z) <br><br><br><b>
-                                                                Authorized Dealer Seal &amp; Signature </b></td>
-                                                        <td class="text-center"><br><br><br><b>Customer Signature</b>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <h6 class="text-center"><b style="font-weight:bold; font-size:13px;">[Note:
-                                                    This certificate was downloaded from WWW.RTVSTA.TN.GOV.IN]</b></h6>
-
-
-                                            <div class="col-lg-1"></div>
-
-
-                                            {% comment %} <div class="text-center">
-                                                <button class="btn btn-success" onclick="window.print()" value="print">
-                                                    Print Certificate</button>
-
-                                                <a class="btn btn-dark"
-                                                    href="{% url 'home' %}">Back
-                                                </a>
-                                            </div> {% endcomment %}
-                                            <script>
-                                                function PrintCer() {
-                                                    var strWindowFeatures = "location=yes,height=900,width=1000,scrollbars=yes,status=yes";
-                                                    var URL = "/Home/Certificate?code=772637&type=New&isScan=false";
-                                                    var win = window.open(URL, "_blank", strWindowFeatures);
-                                                };
-                                                function openWin() {
-                                                    myWindow = window.open('', '', 'width=900,height=1000');
-                                                    //myWindow.document.write("<p>This is 'myWindow'</p>");
-
-                                                    var divval = document.getElementById('cer');
-
-                                                    myWindow.document.write(divval.innerHTML);
-                                                    myWindow.document.close();
-
-
-                                                    myWindow.focus();
-                                                    myWindow.print();
-                                                    myWindow.close();
-                                                };
-                                            </script>
-
-                                            <p></p>
-
-
-
-                                            <!-- End #main -->
-                                            <!-- ======= Footer ======= -->
-                                            <!-- End Footer -->
-{% comment %} 
-                                            <a href="https://rtvsta.tn.gov.in/Certificates/ViewCertificate/782118?type=0#"
-                                                class="back-to-top d-flex align-items-center justify-content-center"><i
-                                                    class="bi bi-arrow-up-short"></i></a>
-
-                                            <!-- Vendor JS Files -->
-                                            <script
-                                                src="./ViewCertificate - Vahan_files/purecounter.js.download"></script>
-                                            <script src="./ViewCertificate - Vahan_files/aos.js.download"></script>
-                                            <script
-                                                src="./ViewCertificate - Vahan_files/bootstrap.bundle.min.js.download"></script>
-                                            <script
-                                                src="./ViewCertificate - Vahan_files/glightbox.min.js.download"></script>
-                                            <script
-                                                src="./ViewCertificate - Vahan_files/isotope.pkgd.min.js.download"></script>
-                                            <script
-                                                src="./ViewCertificate - Vahan_files/swiper-bundle.min.js.download"></script>
-                                            <script src="./ViewCertificate - Vahan_files/validate.js.download"></script>
-
-                                            <script
-                                                src="./ViewCertificate - Vahan_files/bootstrap.bundle.min(1).js.download"></script>
-                                            <script
-                                                src="./ViewCertificate - Vahan_files/jquery.validate.min.js.download"></script>
-                                            <script
-                                                src="./ViewCertificate - Vahan_files/jquery.validate.unobtrusive.min.js.download"></script>
-                                            <script
-                                                src="./ViewCertificate - Vahan_files/jquery.unobtrusive-ajax.js.download"></script>
-
-
-                                            <!-- Template Main JS File -->
-                                            <script src="./ViewCertificate - Vahan_files/main.js.download"></script> {% endcomment %}
-
-
-
-                                            <script type="text/javascript">
-                                                $.noConflict();
-                                                $(document).ready(function () {
-                                                    $('#table').DataTable({
-                                                        dom: 'Bfrtip',
-                                                        buttons: [
-                                                            'copy', 'csv', 'excel', 'print', 'pdf'
-                                                        ]
-                                                    });
-                                                });
-                                            </script>
-
-                                            <script type="text/javascript">
-                                                $.noConflict();
-                                                $(document).ready(function () {
-
-                                                    $('#tableSearch').DataTable();
-                                                });
-
-                                            </script>
-
-
-
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+    <div class="container-fluid text-center mt-5">
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="table-responsive text-center">
+                    <div class="d-flex justify-content-evenly align-items-center" style="margin-left: 100px;">
+                        <div style="text-align: center;">
+                            <h4 class="lead fs-2" style="font-weight: 600;">VEHICLE CONSPICUITY ONLINE MIS CERTIFICATE</h4>
+                            <h5 class="lead head-1" style="font-weight: 600;">COMPLIANCE TO AUTOMOTIVE INDUSTRY STANDARD - 089&amp; 090</h5>
+                            <h2 class="lead head-2" style="font-weight: 600;">(Generated online in rtvsta.tn.gov.in)
+                            </h2>
                         </div>
+                        <!-- <div>
+                            <img src="{{qr_image_url}}" alt="QR Code">
+                        </div> -->
                     </div>
+                    <table class="mx-auto">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                    <table border="1" style="width: 100%;border: transparent">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <table border="1"
+                                                                        style="width: 100%;border: transparent">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="text-align: start;font-weight:bold">
+                                                                                    To:</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="text-align: start;font-weight:bold">
+                                                                                     The Regional Transport Office<span
+                                                                                        style="font-weight:bold;text-transform: uppercase;"></span>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="text-align: start;font-weight: bold;">
+                                                                                    <span style="font-weight: 600;text-transform: uppercase;">
+                                                                                        {{user_data.rto}}
+                                                                                    </span>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                                <td>
+                                                                </td>
+                                                                <td>
+                                                                    <table border="1" id="pholo"
+                                                                        style="width: 100%;border: transparent">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="text-align: center; height: 40px;font-weight: bold;">
+                                                                                    <strong>RTV - CERTIFICATE</strong>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                                <td>
+                                                                    <table border="1"
+                                                                        style="width: 100%;border: transparent">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="text-align: end;font-weight:bold">
+                                                                                    Certificate No: 
+                                                                                    <span style="font-weight:bold;text-transform: uppercase;">{{user_data.certificate_no}}</span>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="text-align: end;font-weight:bold">
+                                                                                    Fitment Date: <span
+                                                                                        style="font-weight:bold;text-transform: uppercase;">{{user_data.today_date|date:"d/m/Y"}}</span>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+
+
+                                                    <table style="text-align: left;padding:15px">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th class="col-md-4" style="border: 1px solid black;height: 40px; padding-left: 4px;">
+                                                                    Vehicle Details</th>
+                                                                <th class="col-md-3" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Vehicle Make &amp; Model</th>
+                                                                <th class="col-md-5" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Manufacturer &amp; DistributorDetails</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="col-md-4" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Registration No :
+                                                                    <span style="font-size: 20px;font-weight: 500;"><strong>{{user_data.vehicle_no}}</strong></span>
+                                                                </td>
+                                                                <td class="col-md-3" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Registration Year:
+                                                                    <span style="font-size: 20px;">{{user_data.year_of_registration}}</span>
+                                                                </td>
+                                                                <td class="col-md-5" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Trade Name : 
+                                                                    <span style="font-size:20px;font-weight: 500;"><strong>3M </strong></span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="col-md-4" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Chassis No :
+                                                                    <span style="font-size:20px;">{{user_data.chassis_no}}</span></td>
+                                                                <td class="col-md-3" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Engine No :
+                                                                    <span style="font-size:20px;">{{user_data.engine_no}}</span></td>
+                                                                <td class="col-md-5"
+                                                                    style="border: 1px solid black;padding-left: 4px;">
+                                                                    Manufacturer
+                                                                    Details: <span style="font-size:20px;">3M INDIA LIMITED</span> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="col-4" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Vehicle Make: <span style="font-size:20px;">{{user_data.make}}</span>
+                                                                </td>
+                                                                <td class="col-3" style="border: 1px solid black; padding-left: 4px;">
+                                                                    Vehicle Model :
+                                                                    <span style="font-size:20px;">{{user_data.vehicle_model}}</span></td>
+                                                                <td class="col-5"
+                                                                    style="border: 1px solid black;padding-left: 4px;">
+                                                                    Distributor
+                                                                    Details: <span style="font-size:20px;">SAI SUKRAN VENTURES PVT LTD</span> </td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+
+
+
+                                                    <table style="text-align: left;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="col-6" style="border: 1px solid black;height: 40px; padding-left: 4px";>
+                                                                    Vehicle Owner Details </th>
+                                                                <th class="col-6" style="border: 1px solid black; padding-left: 4px;">RC
+                                                                    IMAGE</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">
+                                                                    Company Name/Owner Name : <span style="font-size:20px;">{{user_data.name}}</span>
+                                                                </td>
+                                                                <td class="tablee p-1" style="border: 1px solid black;"
+                                                                    rowspan="8">
+                                                                    <img src="{{ user_data.rc_image.url }}" height="30"
+                                                                        width="100">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">
+                                                                    Owner Address / Register Address :
+                                                                    <span style="font-size:20px;">{{user_data.address}}</span><br>
+                                                                    Contact Number : <span style="font-size:20px;">{{user_data.phone}}</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th style="border: 1px solid black; padding-left: 4px;" class="col-md-3">
+                                                                    Conspicuity Tapes 20MM & 50MM
+                                                                    Fitment Details</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border: 1px solid black; padding-left: 4px;"> 20MM RED :
+                                                                    {{user_data.red20mm}} Mtrs | 20MM
+                                                                    WHITE : {{user_data.white20mm}} Mtrs
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">50MM Red :
+                                                                    {{user_data.red50mm}} Mtrs | 50MM White
+                                                                    : {{user_data.white50mm}} Mtrs | 50MM Yellow :
+                                                                    {{user_data.yellow50mm}} Mtrs
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th style="border: 1px solid black; padding-left: 4px;" class="col-md-3">
+                                                                    Rear Marking Plates Details</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">
+                                                                     
+                                                                    {% comment %} <i id="class3_icon"   style="color: #FFD43B;display: none;"></i> {% endcomment %}
+
+                                                                    {% if user_data.class3 == 1 or user_data.class3 == '1' %}
+                                                                    Class 3 : Red Retro Reflective and Yellow Retro
+                                                                    Reflective-Alternative Strips
+                                                                        <i class="fa-regular fa-square-check" style="font-size: 30px;"></i>
+                                                                    {% else %}
+                                                                    
+                                                                    Class 3 : {{user_data.class3}} Red Retro Reflective and Yellow Retro Reflective-Alternative Strips
+                                                                    {% endif %}
+                                                                    <!-- Assuming this is somewhere within your form -->
+<!--                                                                    <input type="text" class="fa-sharp fa-solid fa-circle-check" oninput="displayIcon();" id="Model" name="Model">-->
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">Class 4 :
+                                                                    {{user_data.class4}}
+                                                                    Red Retro Reflective border and Yellow Retro
+                                                                    Reflective Centre
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+
+
+                                                    <table style="text-align: left;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th style="border: 1px solid black;height: 40px; padding-left: 4px;">Approval Details
+                                                                </th>
+                                                                <th style="border: 1px solid black; padding-left: 4px;" colspan="2"
+                                                                    align="right" class="text-center">
+                                                                    Certified By ARAI / ICAT</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border: 1px solid black; padding-left: 4px;font-size: 19px;">TAC:A94495</td>
+                                                                <td style="border: 1px solid black; padding-left: 4px;font-size: 19px;">COP Number:
+                                                                    SHL/16/2020-2021/3000013406/COP/2621
+                                                                </td>
+                                                                <td style="border: 1px solid black; padding-left: 4px;font-size: 19px;">Test Report Number:
+                                                                    SHL/16/2013-2014/9149/2783</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+
+
+                                                    <table class="table-res" style="text-align: left;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th colspan="4" style="border: 1px solid black; padding-left: 4px;">Fitment
+                                                                    Images</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">Front</td>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">Rear</td>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">Side-1</td>
+                                                                <td style="border: 1px solid black; padding-left: 4px;">Side-2</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td
+                                                                    style="width: 25%;border: 1px solid black;text-align: center;">
+                                                                    <img src="{{user_data.front_image.url}}" class="p-1" height="200"
+                                                                        width="400">
+                                                                </td>
+                                                                <td
+                                                                    style="width: 25%;border: 1px solid black;text-align: center;">
+                                                                    <img src="{{user_data.back_image.url}}" class="p-1" height="200"
+                                                                        width="400">
+                                                                </td>
+                                                                <td
+                                                                    style="width: 25%;border: 1px solid black;text-align: center;">
+                                                                    <img src="{{user_data.left_image.url}}" class="p-1" height="200"
+                                                                        width="400">
+                                                                </td>
+                                                                <td
+                                                                    style="width: 25%;border: 1px solid black;text-align: center;">
+                                                                    <img src="{{user_data.right_image.url}}" class="p-1" height="200"
+                                                                        width="400">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="4" style="border: 1px solid black; padding-left: 4px;font-size: 20px;">
+                                                                    <p>We hereby certify that supplied/installed ICAT /
+                                                                        ARAI Approved Retro Reflective Tapes as per CMRV
+                                                                        rule 104 specified under CMVR GSR 784 (E)
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3" style="border: 1px solid black; padding-left: 4px;">For
+                                                                    {{user_data.dealer_name}}
+                                                                    <br><br><br><span style="font-weight: 500;font-size: 17px;"><b>Authorized Dealer Seal & Signature</b></span>
+                                                                    
+                                                                </td>
+                                                                <td class="text-center"
+                                                                    style="border: 1px solid black; padding-left: 4px;">
+                                                                    <br><br><br><span style="font-weight: 500;font-size: 17px;"><b>Customer
+                                                                        Signature</b></span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                    <h6 class="text-center lead"><b style="font-size:18px;font-weight: 600;padding-left: 4px;">[Note:
+                                                            This certificate was downloaded from
+                                                            WWW.RTVSTA.TN.GOV.IN]</b></h6>
+
+
+                                                    <div class="col-lg-1"></div>
+
+
+                                                    <!-- <div class="text-center">
+                                                        <button class="btn btn-success no-print fs-md-18 fs-sm-16" style="font-size: 17px;" onclick="window.print()" value="print">
+                                                            Print Certificate
+                                                        </button>
+                                                        <a class="btn btn-dark no-print" style="font-size: 18px;" href="{% url 'home' %}">
+                                                            Back
+                                                        </a>
+                                                    </div> -->
+
+
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </section>
-    </main>
-</body>
+        </div>
+    </div>
+<br>
+<br>
+<script type="text/javascript" src="{% static 'js/certificate.js' %}"></script>
+
 {% endblock content %}
