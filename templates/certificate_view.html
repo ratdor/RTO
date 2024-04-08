@@ -1,3 +1,6 @@
+certificate_view.htm
+
+
 {% extends 'base.html'%}
 {% load static %}
 {% block link %}{% static 'css/certificate_view.css' %}{% endblock link %}
@@ -8,14 +11,14 @@
         <div class="row justify-content-center">
             <div class="col">
                 <div class="table-responsive text-center">
-                    <div class="d-flex justify-content-evenly align-items-center" style="margin-left: 100px;">
-                        <div style="text-align: center;">
-                            <h4 class="lead fs-2" style="font-weight: 600;">VEHICLE CONSPICUITY ONLINE MIS CERTIFICATE</h4>
-                            <h5 class="lead head-1" style="font-weight: 600;">COMPLIANCE TO AUTOMOTIVE INDUSTRY STANDARD - 089&amp; 090</h5>
-                            <h2 class="lead head-2" style="font-weight: 600;">(Generated online in rtvsta.tn.gov.in)
+                    <div class="d-flex justify-content-evenly align-items-center">
+                        <div class="heading" style="text-align: center;">
+                            <h4 class="lead fs-2">VEHICLE CONSPICUITY ONLINE MIS CERTIFICATE</h4>
+                            <h5 class="lead head-1">COMPLIANCE TO AUTOMOTIVE INDUSTRY STANDARD - 089&amp; 090</h5>
+                            <h2 class="lead head-2">(Generated online in rtvsta.tn.gov.in)
                             </h2>
                         </div>
-                        <div>
+                        <div style="align-items-right">
                             <img src="{{qr_image_url}}" alt="QR Code">
                         </div>
                     </div>
@@ -119,40 +122,40 @@
                                                             <tr>
                                                                 <td class="col-md-4" style="border: 1px solid black; padding-left: 4px;">
                                                                     Registration No :
-                                                                    <span style="font-weight: 500;font-size: 18px;"><strong>{{certificate.vehicle_no}}</strong></span>
+                                                                    <span class="textfont" style="font-weight: 500;"><strong>{{certificate.vehicle_no}}</strong></span>
                                                                 </td>
                                                                 <td class="col-md-3" style="border: 1px solid black; padding-left: 4px;">
                                                                     Registration Year:
-                                                                    <span style="font-size:18px;">{{certificate.year_of_registration}}</span>
+                                                                    <span class="textfont">{{certificate.year_of_registration}}</span>
                                                                 </td>
                                                                 <td class="col-md-5" style="border: 1px solid black; padding-left: 4px;">
                                                                     Trade Name : 
-                                                                    <span style="font-size:18px;font-weight: 500;"><strong>3M </strong></span>
+                                                                    <span class="textfont" style="font-weight: 500;"><strong>3M </strong></span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="col-md-4" style="border: 1px solid black; padding-left: 4px;">
                                                                     Chassis No :
-                                                                    <span style="font-size:18px;">{{certificate.chassis_no}}</span></td>
+                                                                    <span class="textfont">{{certificate.chassis_no}}</span></td>
                                                                 <td class="col-md-3" style="border: 1px solid black; padding-left: 4px;">
                                                                     Engine No :
-                                                                    <span style="font-size:18px;">{{certificate.engine_no}}</span></td>
+                                                                    <span class="textfont">{{certificate.engine_no}}</span></td>
                                                                 <td class="col-md-5"
                                                                     style="border: 1px solid black;padding-left: 4px;">
                                                                     Manufacturer
-                                                                    Details: <span style="font-size:18px;">3M INDIA LIMITED</span> </td>
+                                                                    Details: <span class="textfont"">3M INDIA LIMITED</span> </td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="col-4" style="border: 1px solid black; padding-left: 4px;">
-                                                                    Vehicle Make: <span style="font-size:18px;">{{certificate.make}}</span>
+                                                                    Vehicle Make: <span class="textfont">{{certificate.make}}</span>
                                                                 </td>
                                                                 <td class="col-3" style="border: 1px solid black; padding-left: 4px;">
                                                                     Vehicle Model :
-                                                                    <span style="font-size:18px;">{{certificate.vehicle_model}}</span></td>
+                                                                    <span class="textfont">{{certificate.vehicle_model}}</span></td>
                                                                 <td class="col-5"
                                                                     style="border: 1px solid black;padding-left: 4px;">
                                                                     Distributor
-                                                                    Details: <span style="font-size:18px;">SAI SUKRAN VENTURES PVT LTD</span> </td>
+                                                                    Details: <span class="textfont">SAI SUKRAN VENTURES PVT LTD</span> </td>
                                                             </tr>
                                                         </tbody>
 
@@ -173,7 +176,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td style="border: 1px solid black; padding-left: 4px;">
-                                                                    Company Name/Owner Name : <span style="font-size:20px;">{{certificate.name}}</span>
+                                                                    Company Name/Owner Name : <span class="textfont">{{certificate.name}}</span>
                                                                 </td>
                                                                 <td class="tablee p-1" style="border: 1px solid black;"
                                                                     rowspan="8">
@@ -184,8 +187,8 @@
                                                             <tr>
                                                                 <td style="border: 1px solid black; padding-left: 4px;">
                                                                     Owner Address / Register Address :
-                                                                    <span style="font-size:20px;">{{certificate.address}}</span><br>
-                                                                    Contact Number : <span style="font-size:20px;">{{certificate.phone}}</span>
+                                                                    <span class="textfont">{{certificate.address}}</span><br>
+                                                                    Contact Number : <span class="textfont">{{certificate.phone}}</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -194,13 +197,13 @@
                                                                     Fitment Details</th>
                                                             </tr>
                                                             <tr>
-                                                                <td style="border: 1px solid black; padding-left: 4px;font-size: 18px;"> 20MM RED :
+                                                                <td class="textfont" style="border: 1px solid black; padding-left: 4px;"> 20MM RED :
                                                                     {{certificate.red20mm}} Mtrs | 20MM
                                                                     WHITE : {{certificate.white20mm}} Mtrs
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td style="border: 1px solid black; padding-left: 4px;font-size: 18px;">50MM Red :
+                                                                <td class="textfont" style="border: 1px solid black; padding-left: 4px;">50MM Red :
                                                                     {{certificate.red50mm}} Mtrs | 50MM White
                                                                     : {{certificate.white50mm}} Mtrs | 50MM Yellow :
                                                                     {{certificate.yellow50mm}} Mtrs
@@ -217,8 +220,8 @@
 
                                                                     {% if certificate.class3 == 1 or certificate.class3 == '1' %}
                                                                     Class 3 : Red Retro Reflective and Yellow Retro
-                                                                    Reflective-Alternative Strips
-                                                                        <i class="fa-regular fa-square-check" style="font-size: 30px;"></i>
+                                                                    Reflective-Alternative Strips <br>
+                                                                        <i class="fa-regular fa-square-check" style="font-size: 25px;"></i>
                                                                     {% else %}
                                                                     
                                                                     Class 3 : {{certificate.class3}} Red Retro Reflective and Yellow Retro Reflective-Alternative Strips
@@ -253,11 +256,11 @@
                                                                     Certified By ARAI / ICAT</th>
                                                             </tr>
                                                             <tr>
-                                                                <td style="border: 1px solid black; padding-left: 4px;font-size: 18px;">TAC:A94495</td>
-                                                                <td style="border: 1px solid black; padding-left: 4px;font-size: 18px;">COP Number:
+                                                                <td class="textfont" style="border: 1px solid black; padding-left: 4px;">TAC:A94495</td>
+                                                                <td class="textfont"  style="border: 1px solid black; padding-left: 4px;">COP Number:
                                                                     SHL/16/2020-2021/3000013406/COP/2621
                                                                 </td>
-                                                                <td style="border: 1px solid black; padding-left: 4px;font-size: 18px;">Test Report Number:
+                                                                <td  class="textfont" style="border: 1px solid black; padding-left: 4px;">Test Report Number:
                                                                     SHL/16/2013-2014/9149/2783</td>
                                                             </tr>
                                                         </tbody>
@@ -306,7 +309,7 @@
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="4" style="border: 1px solid black; padding-left: 4px;font-size: 20px;">
+                                                                <td colspan="4" style="border: 1px solid black; padding-left: 4px;font-size: 17px;">
                                                                     <p>We hereby certify that supplied/installed ICAT /
                                                                         ARAI Approved Retro Reflective Tapes as per CMRV
                                                                         rule 104 specified under CMVR GSR 784 (E)

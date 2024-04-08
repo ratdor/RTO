@@ -1,8 +1,20 @@
+certificate_view.css
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Times New Roman';
+}
+
+h4.lead {
+    font-family: 'Lucida Sans';
+    font-size: 14px;
+}
+
+.heading {
+    width: 1400px;
 }
 
 .text-align-left {
@@ -61,6 +73,10 @@ th {
     transform-origin: top;
 }
 
+.textfont {
+    font-size: 18px;
+}
+
 
 /* Responsive scaling for screens 433px and below */
 @media screen and (min-width: 767px) {
@@ -78,6 +94,8 @@ th {
         width: 21cm;
         height: 29.7cm;
         margin: 0;
+        /* border: 1px solid black; */
+        box-sizing: border-box;
         /* margin: 30mm 45mm 30mm 45mm;  */
         /* Change to landscape orientation if needed */
         /* overflow-y: hidden;
@@ -86,11 +104,8 @@ th {
     }
 
     @page {
-        size: auto;
-        /* size: A2 portrait;    */
-        /* Set page size */
-        page-break-before:auto;
-        margin: 1cm 0cm 0.85cm 0cm;
+        size: A4;
+        margin: 1cm;
         /* Ensure page break before each odd page */
     }
 
@@ -137,8 +152,8 @@ th {
 
     tr,
     th,
-    td {
-        font-size: 20px;
+    td .textfont {
+        font-size: 16px;
     }
 
     td,
