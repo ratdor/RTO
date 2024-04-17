@@ -145,6 +145,7 @@ def certificate_view(request, id):
         certificate_details = None
         qr_image_url = None
     
+    print(certificate_details.rc_image)
     context = {
         'certificate': certificate_details,
         'qr_image_url': qr_image_url,
