@@ -77,11 +77,23 @@ WSGI_APPLICATION = "rto.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
+    "mysql": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "rto1",
+        "USER": "root",
+        "PASSWORD": "",
+        "HOST": "localhost",  # or your MySQL server address
+        "PORT": "3306",
+    },
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
-    }
+    },
 }
+
+DATABASE_ROUTERS = ['certificate.db_router.MyDBRouter']
+
+
 
 
 # Password validation

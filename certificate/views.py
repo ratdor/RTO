@@ -31,18 +31,18 @@ def login_view(request):
 @login_required(login_url='/login/')
 def home_view(request):
     if request.method == 'POST':
-        owner_form = OwnerForm(request.POST,request.FILES)
+        owner_form = OwnerForm(request.POST, request.FILES)
         if owner_form.is_valid():
-            owner = owner_form.save()
+            owner = owner_form.save(commit=False)
+            owner.save(using='mysql')  # Save to MySQL
             return redirect('search')
     else:
         owner_form = OwnerForm()
     
-    context ={
+    context = {
         'owner_form': owner_form,
     }
     return render(request, 'home.html', context)
-
 
 @login_required(login_url='/login/')
 def success_view(request):
@@ -56,50 +56,18 @@ def logout_view(request):
         return redirect('login')
     else:
         return HttpResponseNotAllowed(['GET'])
-    
-# def search_view(request):
-#     # Searching by vehicle number
-#     vehic_no = request.POST.get('vecregno')
-#     queryset_by_vehicle = Owner.objects.all()
-#     if vehic_no:
-#         queryset_by_vehicle = queryset_by_vehicle.filter(vehicle_no__icontains=vehic_no)
 
-#     context = {
-#         'trans_no': queryset_by_vehicle,
-#     }
-#     return render(request, 'search_original.html', context)
-
-# def search_view(request):
-#     queryset_by_date = []
-#     if request.method == "POST":
-#         # Get dates from the POST request
-#         from_date_str = request.POST.get('from_date', None)
-#         to_date_str = request.POST.get('to_date', None)
-        
-#         # Convert string dates to datetime objects
-#         if from_date_str and to_date_str:
-#             from_date_str = datetime.strptime(from_date_str, "%Y-%m-%d").date()
-#             to_date_str = datetime.strptime(to_date_str, "%Y-%m-%d").date()
-            
-#             # Filter your queryset based on the date range
-#             queryset_by_date = Owner.objects.filter(today_date__range=[from_date_str , to_date_str])
-#     else:
-#         # Handle non-POST requests if necessary, such as displaying an empty form
-#         # queryset_by_date can be an empty queryset or a queryset with all objects based on your needs
-#         queryset_by_date = Owner.objects.all()
-
-#     # Pass the filtered queryset to the template
-#     context = {'queryset_by_date': queryset_by_date}
-#     return render(request, 'search_original.html', context)
     
 def search_view(request):
     queryset_by_date_vehicle = []
-    formatted_date = datetime.now().date()  # Ensuring formatted_date has a default value
+    formatted_date = datetime.now().date()  # Get current date
 
     if request.method == "POST":
         vehic_no = request.POST.get('vecregno')
+
         if vehic_no:
-            queryset_by_date_vehicle = Owner.objects.filter(vehicle_no__icontains=vehic_no,id=1)
+            # Filtering by vehicle number (case insensitive)
+            queryset_by_date_vehicle = Owner.objects.filter(vehicle_no__icontains=vehic_no)
 
         from_date_str = request.POST.get('from_date', None)
         to_date_str = request.POST.get('to_date', None)
@@ -107,64 +75,98 @@ def search_view(request):
         if from_date_str and to_date_str:
             from_date = datetime.strptime(from_date_str, "%Y-%m-%d").date()
             to_date = datetime.strptime(to_date_str, "%Y-%m-%d").date()
-            # It seems you wanted to filter objects up to the current date but included formatted_date incorrectly.
+            # Filtering by date range
             queryset_by_date_vehicle = Owner.objects.filter(today_date__range=[from_date, to_date])
 
     else:
-        queryset_by_date_vehicle = Owner.objects.all()
+        # Fetching all unique data from SQLite and MySQL
+        sqlite_data = Owner.objects.using('default').all()
+        mysql_data = Owner.objects.using('mysql').all()
+
+        combined_data = {}
+
+        # Adding SQLite data to combined_data dictionary
+        for owner in sqlite_data:
+            combined_data[owner.id] = owner
+
+        # Adding MySQL data to combined_data dictionary, avoiding duplicates
+        for owner in mysql_data:
+            combined_data.setdefault(owner.id, owner)
+
+        # Converting combined_data dictionary values back to a list
+        queryset_by_date_vehicle = list(combined_data.values())
 
     context = {
         'queryset_by_date_vehicle': queryset_by_date_vehicle,
-        'formatted_date': formatted_date.strftime("%m/%d/%Y"),  # Properly formatting the date here for display
+        'formatted_date': formatted_date.strftime("%m/%d/%Y"),  # Formatting date for display
     }
     return render(request, 'search_original.html', context)
 
-
 def certificate_view(request, id):
+    certificate_details = None
+    
+    # Try fetching from SQLite first
     try:
-        certificate_details = Owner.objects.get(id=id)
-    
-        user_data_url = request.build_absolute_uri(reverse('user_data', args=[certificate_details.id]))
-        
-        qr = qrcode.QRCode(
-            version=1,
-            error_correction=qrcode.constants.ERROR_CORRECT_L,
-            box_size=8,
-            border=5,
-        )
-        qr.add_data(user_data_url)
-        qr.make(fit=True)
-
-        qr_image = qr.make_image(fill_color="black", back_color="white")
-        
-        buffer = BytesIO()
-        qr_image.save(buffer, format="PNG")
-        qr_image_data = base64.b64encode(buffer.getvalue()).decode()
-        qr_image_url = f"data:image/png;base64,{qr_image_data}"
+        certificate_details = Owner.objects.using('default').get(id=id)
     except Owner.DoesNotExist:
-        certificate_details = None
-        qr_image_url = None
+        pass
     
-    print(certificate_details.rc_image)
+    # If not found in SQLite, try fetching from MySQL
+    if not certificate_details:
+        try:
+            certificate_details = Owner.objects.using('mysql').get(id=id)
+        except Owner.DoesNotExist:
+            pass
+    
+    if not certificate_details:
+        return render(request, "certificate_view.html", {
+            'certificate': None,
+            'qr_image_url': None,
+            'error_message': 'Certificate not found in both databases.',
+        })
+
+    # Generate QR code
+    user_data_url = request.build_absolute_uri(reverse('user_data', args=[certificate_details.id]))
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=8,
+        border=5,
+    )
+    qr.add_data(user_data_url)
+    qr.make(fit=True)
+
+    qr_image = qr.make_image(fill_color="black", back_color="white")
+    buffer = BytesIO()
+    qr_image.save(buffer, format="PNG")
+    qr_image_data = base64.b64encode(buffer.getvalue()).decode()
+    qr_image_url = f"data:image/png;base64,{qr_image_data}"
+
     context = {
         'certificate': certificate_details,
         'qr_image_url': qr_image_url,
     }
-    
+
     return render(request, "certificate_view.html", context)
 
 
-def user_data_view(request,user_id):
-   
+def user_data_view(request, user_id):
+    user_data = None
+
+    # Try fetching from SQLite first
     try:
-         user_data = Owner.objects.get(id= user_id)
+        user_data = Owner.objects.using('default').get(id=user_id)
     except Owner.DoesNotExist:
-        user_data = None
+        # If not found in SQLite, try fetching from MySQL
+        try:
+            user_data = Owner.objects.using('mysql').get(id=user_id)
+        except Owner.DoesNotExist:
+            user_data = None
     
     context = {
         'user_data': user_data,
     }
-    return render(request,'user_data.html',context)
+    return render(request, 'user_data.html', context)
 
 
 
